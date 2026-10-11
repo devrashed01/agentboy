@@ -198,6 +198,12 @@
   .center { text-align: center; }
   .center .sub { margin: 0 auto; }
 
+  /* Demo video */
+  .video-frame { margin: 40px auto 0; max-width: 1040px; border-radius: 18px; overflow: hidden;
+    border: 1px solid var(--line-2); background: #000;
+    box-shadow: 0 40px 90px -30px rgba(31,64,200,.55); }
+  .video-frame video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; }
+
   /* Three states */
   .states { display: grid; grid-template-columns: 0.8fr 1.3fr 1.5fr; gap: 20px; margin-top: 48px; align-items: stretch; }
   .state {
@@ -330,6 +336,7 @@
   <div class="wrap">
     <a class="brand" href="#"><img src="assets/icon.png" alt="">AgentBoy</a>
     <div class="links">
+      <a href="#demo">Demo</a>
       <a href="#how">How it works</a>
       <a href="#features">Features</a>
       <a href="#companions">Companions</a>
@@ -403,6 +410,23 @@
     </div>
   </div>
 </header>
+
+<section id="demo" style="padding-top: 8px">
+  <div class="wrap">
+    <div class="center reveal">
+      <span class="kicker">See it in action</span>
+      <h2>A minute and a half with AgentBoy.</h2>
+      <p class="sub">Recorded live: real clicks, real sounds. Turn the sound on to hear the chimes and the dino.</p>
+    </div>
+    <div class="video-frame reveal">
+      <video id="demoVideo" controls playsinline muted loop preload="none"
+             poster="assets/agentboy-demo-poster.jpg"
+             aria-label="AgentBoy demo: answering a question, approving a permission, a task finishing, welcome back, settings, the companion and Quiet mode">
+        <source src="assets/agentboy-demo.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section>
 
 <section id="how">
   <div class="wrap">
@@ -668,6 +692,14 @@
 
   // A little hint from the robot, once.
   if (!reduce) setTimeout(() => { say.classList.add("show"); setTimeout(() => say.classList.remove("show"), 3800); }, 2200);
+
+  // The demo plays (muted) once it's on screen, and pauses when it isn't.
+  const video = document.getElementById("demoVideo");
+  if (video && !reduce) {
+    new IntersectionObserver(entries => entries.forEach(e => {
+      if (e.isIntersecting) { video.play().catch(() => {}); } else { video.pause(); }
+    }), { threshold: 0.5 }).observe(video);
+  }
 
   // Sections ease in as they scroll into view.
   const io = new IntersectionObserver(entries => entries.forEach(e => {
