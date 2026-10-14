@@ -110,19 +110,26 @@
   .menubar b { font-weight: 600; }
 
   /* The live pill: a rest state built in HTML, opening into the real UI. */
-  .pill-zone { position: absolute; left: 50%; top: 2px; transform: translateX(-50%); z-index: 3; }
+  /* It hangs from the top edge, like a notch: black, flat on top, with
+     soft concave shoulders where it meets the edge. */
+  .pill-zone { position: absolute; left: 50%; top: 0; transform: translateX(-50%); z-index: 3; }
+  .pill-zone::before, .pill-zone::after {
+    content: ""; position: absolute; top: 0; width: 8px; height: 8px; pointer-events: none;
+    transition: opacity .2s ease;
+  }
+  .pill-zone::before { right: 100%; background: radial-gradient(circle at 0 100%, transparent 7.5px, #000 8px); }
+  .pill-zone::after { left: 100%; background: radial-gradient(circle at 100% 100%, transparent 7.5px, #000 8px); }
   .pill {
     position: relative; margin: 0 auto;
-    width: 254px; height: 26px; border-radius: 13px;
-    background: rgba(26,28,36,.96);
-    border: 1px solid rgba(255,255,255,.10);
+    width: 254px; height: 30px; border-radius: 0 0 11px 11px;
+    background: #000;
     box-shadow: 0 2px 10px rgba(0,0,0,.35);
     overflow: hidden; cursor: pointer;
     transition: width .52s cubic-bezier(.2,.9,.25,1.05), height .52s cubic-bezier(.2,.9,.25,1.05),
                 border-radius .52s cubic-bezier(.2,.9,.25,1), box-shadow .4s ease;
   }
   .pill .core {
-    position: absolute; left: 50%; top: 0; height: 26px; transform: translateX(-50%);
+    position: absolute; left: 50%; top: 0; height: 30px; transform: translateX(-50%);
     display: flex; align-items: center; gap: 7px; white-space: nowrap;
     font-size: 11.5px; font-weight: 600; color: #f1f1f4; transition: opacity .2s ease;
   }
@@ -134,23 +141,23 @@
   .pulse { animation: breathe 1.6s ease-in-out infinite; }
   @keyframes breathe { 50% { opacity: .5; } }
   .pill .open-img {
-    position: absolute; left: 0; top: 0; width: 699px; max-width: none;
+    position: absolute; left: 0; top: 0; width: 700px; max-width: none;
     opacity: 0; transition: opacity .25s ease .05s;
     pointer-events: none;
   }
   .pill-zone:hover .pill, .pill-zone.is-open .pill {
-    width: 692px; height: 166px; border-radius: 20px;
+    width: 680px; height: 166px; border-radius: 0 0 20px 20px;
     box-shadow: 0 24px 60px -12px rgba(0,0,0,.6);
     /* Once the real surface has faded in, it carries its own edge. */
-    background-color: transparent; border-color: transparent;
+    background-color: transparent;
     transition: width .52s cubic-bezier(.2,.9,.25,1.05), height .52s cubic-bezier(.2,.9,.25,1.05),
                 border-radius .52s cubic-bezier(.2,.9,.25,1), box-shadow .4s ease,
-                background-color .2s ease .42s, border-color .2s ease .42s;
+                background-color .2s ease .42s;
   }
   .pill-zone:hover .open-img, .pill-zone.is-open .open-img { opacity: 1; transition-delay: .12s; }
   .pill-zone:hover .core, .pill-zone.is-open .core { opacity: 0; transition-delay: .1s; }
-  .pill-zone:hover .pill .open-img { left: -3px; top: -3px; }
-  .pill-zone.is-open .pill .open-img { left: -3px; top: -3px; }
+  .pill-zone:hover .pill .open-img, .pill-zone.is-open .pill .open-img { left: -10px; top: -10px; }
+  .pill-zone:hover::before, .pill-zone:hover::after, .pill-zone.is-open::before, .pill-zone.is-open::after { opacity: 0; }
   .hover-hint {
     position: absolute; left: 50%; top: 46px; transform: translateX(-50%);
     display: flex; align-items: center; gap: 8px; white-space: nowrap;
@@ -506,7 +513,7 @@
           <li>After a reset it shows a dash until fresh numbers arrive, never a made-up 0%.</li>
         </ul>
       </div>
-      <div class="shot"><img src="assets/panel-settings.webp" alt="The open panel showing usage meters, the session trend and Settings"></div>
+      <div class="shot"><img src="assets/panel-settings.webp" alt="The open panel showing usage meters, the session trend and the Alerts settings"></div>
     </div>
 
     <div class="grid">
