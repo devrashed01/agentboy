@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>AgentBoy: your Claude Code agents, at a glance</title>
-<meta name="description" content="A small pill at the top of your Mac that watches every Claude Code session, lets you answer their questions inline, and keeps an honest eye on your usage. Free for macOS.">
+<meta name="description" content="A small pill at the top of your screen that watches every Claude Code session, lets you answer their questions inline, and keeps an honest eye on your usage. Free for Mac and Windows.">
 <meta property="og:title" content="AgentBoy">
-<meta property="og:description" content="Your Claude Code agents, at a glance. A floating macOS pill with a companion that reacts to your agents.">
+<meta property="og:description" content="Your Claude Code agents, at a glance. A floating pill for Mac and Windows, with a companion that reacts to your agents.">
 <meta property="og:image" content="https://devrashed01.github.io/agentboy/assets/og.png">
 <meta property="og:url" content="https://devrashed01.github.io/agentboy/">
 <meta property="og:type" content="website">
@@ -272,6 +272,11 @@
   .steps p { margin: 0; color: var(--text-2); font-size: 14.5px; }
   .note { margin-top: 18px; padding: 16px 18px; border-radius: 14px; border: 1px solid rgba(255,190,74,.25); background: rgba(255,190,74,.06); color: var(--text-2); font-size: 14.5px; }
   .note b { color: var(--amber); }
+  .os-tabs { display: flex; justify-content: center; gap: 6px; margin: 30px auto 0; padding: 4px; width: max-content; border: 1px solid var(--line); border-radius: 12px; background: var(--bg-2); }
+  .os-tabs button { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border: 0; border-radius: 9px; background: transparent; color: var(--text-2); font: inherit; font-size: 14.5px; font-weight: 600; cursor: pointer; }
+  .os-tabs button svg { width: 16px; height: 16px; }
+  .os-tabs button[aria-selected="true"] { background: rgba(255,255,255,.08); color: var(--text); }
+  .os-tabs button:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
 
   /* FAQ */
   .faq { max-width: 780px; margin: 40px auto 0; }
@@ -343,7 +348,7 @@
       <a href="#install">Install</a>
       <a href="#faq">FAQ</a>
     </div>
-    <a class="btn btn-primary btn-small download-link" href="https://github.com/devrashed01/agentboy-releases/releases/latest">Download</a>
+    <a class="btn btn-primary btn-small download-nav" href="#install">Download</a>
   </div>
 </nav>
 
@@ -368,7 +373,7 @@
           <img class="open-img" src="assets/pill-question.webp" alt="The pill opened on hover: Planner Agent is waiting, with its question and one-click answers">
         </div>
       </div>
-      <div class="hover-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg><span class="hint-hover">Hover the pill, like you would on your Mac</span><span class="hint-tap" style="display:none">Tap the pill to open it</span></div>
+      <div class="hover-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg><span class="hint-hover">Hover the pill, like you would in the app</span><span class="hint-tap" style="display:none">Tap the pill to open it</span></div>
 
       <div class="bot-say" id="botSay">Psst, an agent needs you.</div>
       <svg class="bot" id="bot" viewBox="0 0 240 220" role="img" aria-label="The AgentBoy robot companion. Its eyes follow your pointer">
@@ -396,17 +401,20 @@
     </div>
 
     <div class="hero-copy reveal">
-      <span class="eyebrow"><span class="live"></span>Free for macOS · made for Claude Code</span>
+      <span class="eyebrow"><span class="live"></span>Free for Mac and Windows · made for Claude Code</span>
       <h1>Your Claude Code agents, <span class="grad">at a glance.</span></h1>
-      <p class="lede">A small pill at the top of your Mac that watches every session, lets you answer their questions without switching windows, and keeps an honest eye on your usage.</p>
+      <p class="lede">A small pill at the top of your screen that watches every session, lets you answer their questions without switching windows, and keeps an honest eye on your usage.</p>
       <div class="ctas">
-        <a class="btn btn-primary download-link" href="https://github.com/devrashed01/agentboy-releases/releases/latest">
+        <a class="btn btn-primary download-mac" href="https://github.com/devrashed01/agentboy-releases/releases/latest">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.37 12.3c-.02-2.2 1.8-3.26 1.88-3.31-1.03-1.5-2.62-1.7-3.19-1.73-1.36-.14-2.65.8-3.34.8-.69 0-1.75-.78-2.88-.76-1.48.02-2.85.86-3.61 2.19-1.54 2.67-.39 6.62 1.1 8.79.73 1.06 1.6 2.25 2.74 2.2 1.1-.04 1.51-.71 2.84-.71 1.32 0 1.7.71 2.86.69 1.18-.02 1.93-1.08 2.65-2.14.84-1.23 1.18-2.42 1.2-2.48-.03-.01-2.3-.88-2.32-3.5zM14.19 5.84c.6-.73 1.01-1.75.9-2.76-.87.04-1.92.58-2.54 1.31-.56.65-1.05 1.69-.92 2.69.97.07 1.96-.49 2.56-1.24z"/></svg>
-          <span class="download-label">Download for Mac</span>
+          <span>Download for Mac</span>
         </a>
-        <a class="btn btn-ghost" href="#how">See how it works</a>
+        <a class="btn btn-ghost download-win" href="https://github.com/devrashed01/agentboy-releases/releases/latest/download/AgentBoy-win-Setup.exe">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 5.5l7.5-1v7H3zM11.5 4.4L21 3v8.5h-9.5zM3 12.5h7.5v7L3 18.5zM11.5 12.5H21V21l-9.5-1.4z"/></svg>
+          <span>Download for Windows</span>
+        </a>
       </div>
-      <p class="fine"><span class="version">Latest version</span> · macOS 14 or later · Apple silicon</p>
+      <p class="fine"><span class="version">Latest version</span> · macOS 14+ on Apple silicon · Windows 10 or 11 (64-bit) · <a href="#how">See how it works</a></p>
     </div>
   </div>
 </header>
@@ -433,7 +441,7 @@
     <div class="center reveal">
       <span class="kicker">How it works</span>
       <h2>Out of the way until it matters.</h2>
-      <p class="sub">AgentBoy lives in your menu bar. It shows just enough at rest, opens a little when you point at it, and becomes a full panel when you click.</p>
+      <p class="sub">AgentBoy lives at the top of your screen. It shows just enough at rest, opens a little when you point at it, and becomes a full panel when you click.</p>
     </div>
     <div class="states">
       <div class="state reveal">
@@ -518,9 +526,9 @@
         <p>A pill on each screen, so it's always where you're looking. Only the one you use grows.</p>
       </div>
       <div class="card reveal">
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></div>
-        <h4>Make it yours</h4>
-        <p>Graphite, Black, Navy or System theme. Tune the pill's padding, size and how far below the menu bar it sits.</p>
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+        <h4>Mac and Windows</h4>
+        <p>Native on both: SwiftUI on the Mac, WinUI 3 on Windows. The same pill, panel and companions.</p>
       </div>
       <div class="card reveal">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg></div>
@@ -559,7 +567,7 @@
     <div class="privacy reveal">
       <div>
         <span class="kicker" style="color:var(--green)">Private by design</span>
-        <h2 style="font-size:clamp(28px,3.4vw,38px)">Everything stays on your Mac.</h2>
+        <h2 style="font-size:clamp(28px,3.4vw,38px)">Everything stays on your computer.</h2>
         <p class="sub" style="font-size:16.5px">AgentBoy reads what Claude Code already tells it, on your machine. No account, no analytics, no servers of ours.</p>
       </div>
       <ul>
@@ -578,13 +586,30 @@
       <span class="kicker">Install</span>
       <h2>Up and running in a minute.</h2>
     </div>
-    <ol class="steps" style="padding:0">
-      <li class="reveal"><h4>Download</h4><p>Get the latest <code>AgentBoy.dmg</code> from the button below.</p></li>
-      <li class="reveal"><h4>Drag to Applications</h4><p>Open the disk image and drag AgentBoy into Applications.</p></li>
-      <li class="reveal"><h4>Open it once</h4><p>Right-click AgentBoy, choose <b>Open</b>, then <b>Open</b> again. Only needed the first time.</p></li>
-      <li class="reveal"><h4>Connect</h4><p>Click the pill, open Settings (the magic wand) and click <b>Connect</b> next to Claude Code.</p></li>
-    </ol>
-    <p class="note reveal"><b>Why the extra step?</b> AgentBoy isn't notarized by Apple yet, so macOS asks before the first launch. You can also try opening it once, then click <b>Open Anyway</b> in System Settings → Privacy &amp; Security. Updates after that install from inside the app, with no prompts.</p>
+    <div class="os-tabs reveal" role="tablist" aria-label="Your system">
+      <button role="tab" id="tab-mac" aria-controls="steps-mac" aria-selected="true" data-os="mac"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.37 12.3c-.02-2.2 1.8-3.26 1.88-3.31-1.03-1.5-2.62-1.7-3.19-1.73-1.36-.14-2.65.8-3.34.8-.69 0-1.75-.78-2.88-.76-1.48.02-2.85.86-3.61 2.19-1.54 2.67-.39 6.62 1.1 8.79.73 1.06 1.6 2.25 2.74 2.2 1.1-.04 1.51-.71 2.84-.71 1.32 0 1.7.71 2.86.69 1.18-.02 1.93-1.08 2.65-2.14.84-1.23 1.18-2.42 1.2-2.48-.03-.01-2.3-.88-2.32-3.5zM14.19 5.84c.6-.73 1.01-1.75.9-2.76-.87.04-1.92.58-2.54 1.31-.56.65-1.05 1.69-.92 2.69.97.07 1.96-.49 2.56-1.24z"/></svg>Mac</button>
+      <button role="tab" id="tab-win" aria-controls="steps-win" aria-selected="false" data-os="win"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 5.5l7.5-1v7H3zM11.5 4.4L21 3v8.5h-9.5zM3 12.5h7.5v7L3 18.5zM11.5 12.5H21V21l-9.5-1.4z"/></svg>Windows</button>
+    </div>
+    <div id="steps-mac" role="tabpanel" aria-labelledby="tab-mac" data-os-panel="mac">
+      <ol class="steps" style="padding:0">
+        <li class="reveal"><h4>Download</h4><p>Get the latest <code>AgentBoy.dmg</code> from the button below.</p></li>
+        <li class="reveal"><h4>Drag to Applications</h4><p>Open the disk image and drag AgentBoy into Applications.</p></li>
+        <li class="reveal"><h4>Open it once</h4><p>Right-click AgentBoy, choose <b>Open</b>, then <b>Open</b> again. Only needed the first time.</p></li>
+        <li class="reveal"><h4>Connect</h4><p>The welcome walks you through it. Later, hover the pill and click the <b>gear</b> for Settings.</p></li>
+      </ol>
+      <p class="note reveal"><b>Why the extra step?</b> AgentBoy isn't notarized by Apple yet, so macOS asks before the first launch. You can also try opening it once, then click <b>Open Anyway</b> in System Settings → Privacy &amp; Security. Updates after that install from inside the app, with no prompts.</p>
+      <div class="ctas"><a class="btn btn-primary download-mac" href="https://github.com/devrashed01/agentboy-releases/releases/latest"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.37 12.3c-.02-2.2 1.8-3.26 1.88-3.31-1.03-1.5-2.62-1.7-3.19-1.73-1.36-.14-2.65.8-3.34.8-.69 0-1.75-.78-2.88-.76-1.48.02-2.85.86-3.61 2.19-1.54 2.67-.39 6.62 1.1 8.79.73 1.06 1.6 2.25 2.74 2.2 1.1-.04 1.51-.71 2.84-.71 1.32 0 1.7.71 2.86.69 1.18-.02 1.93-1.08 2.65-2.14.84-1.23 1.18-2.42 1.2-2.48-.03-.01-2.3-.88-2.32-3.5zM14.19 5.84c.6-.73 1.01-1.75.9-2.76-.87.04-1.92.58-2.54 1.31-.56.65-1.05 1.69-.92 2.69.97.07 1.96-.49 2.56-1.24z"/></svg><span>Download for Mac</span></a></div>
+    </div>
+    <div id="steps-win" role="tabpanel" aria-labelledby="tab-win" data-os-panel="win" hidden>
+      <ol class="steps" style="padding:0">
+        <li class="reveal"><h4>Download</h4><p>Get <code>AgentBoy-win-Setup.exe</code> from the button below.</p></li>
+        <li class="reveal"><h4>Run it</h4><p>It installs in a click, just for you, with no admin rights needed.</p></li>
+        <li class="reveal"><h4>Allow it once</h4><p>If SmartScreen appears, click <b>More info</b>, then <b>Run anyway</b>. Only needed the first time.</p></li>
+        <li class="reveal"><h4>Connect</h4><p>The welcome walks you through it. Later, hover the pill, or use the tray icon, and click the <b>gear</b>.</p></li>
+      </ol>
+      <p class="note reveal"><b>Why the warning?</b> AgentBoy isn't code-signed yet, so Windows asks before the first run. Updates after that install from inside the app (Settings › Updates). Open the panel any time with <b>Ctrl+Shift+Space</b>.</p>
+      <div class="ctas"><a class="btn btn-primary download-win" href="https://github.com/devrashed01/agentboy-releases/releases/latest/download/AgentBoy-win-Setup.exe"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 5.5l7.5-1v7H3zM11.5 4.4L21 3v8.5h-9.5zM3 12.5h7.5v7L3 18.5zM11.5 12.5H21V21l-9.5-1.4z"/></svg><span>Download for Windows</span></a></div>
+    </div>
   </div>
 </section>
 
@@ -595,11 +620,11 @@
       <h2>Good to know.</h2>
     </div>
     <div class="faq">
-      <details><summary>What do I need?</summary><p>macOS 14 or later and <a href="https://docs.claude.com/en/docs/claude-code">Claude Code</a> installed (the <code>claude</code> command). Usage numbers appear for Claude Pro and Max accounts, because that's when Claude Code reports them.</p></details>
+      <details><summary>What do I need?</summary><p>A Mac with Apple silicon on macOS 14 or later, or a 64-bit PC on Windows 10 (1809) or 11. And <a href="https://docs.claude.com/en/docs/claude-code">Claude Code</a> installed (the <code>claude</code> command). Usage numbers appear for Claude Pro and Max accounts, because that's when Claude Code reports them.</p></details>
       <details><summary>Is it free?</summary><p>Yes. Free to download and use.</p></details>
       <details><summary>Which questions can I answer from the pill?</summary><p>Claude's multiple-choice questions and permission prompts, with every option it offers. Plans and questions Claude asks in plain text are shown so you don't miss them, and you reply in the terminal.</p></details>
       <details><summary>Does it work with several sessions at once?</summary><p>That's what it's for. Every running session shows up, each with its own status and activity, and questions from all of them line up in one place.</p></details>
-      <details><summary>How do I remove it?</summary><p>Click Disconnect in Settings → Claude Code to restore your original settings, then quit the app and move it to the Trash.</p></details>
+      <details><summary>How do I remove it?</summary><p>Click Disconnect in Settings → Claude Code to restore your original settings, then quit the app. On a Mac, move it to the Trash; on Windows, uninstall it from Settings › Apps.</p></details>
     </div>
   </div>
 </section>
@@ -607,11 +632,18 @@
 <section class="final">
   <div class="wrap reveal">
     <img class="bot-small" src="assets/icon.png" alt="">
-    <h2>Give your agents a friend in the menu bar.</h2>
+    <h2>Give your agents a friend at the top of your screen.</h2>
     <div class="ctas">
-      <a class="btn btn-primary download-link" href="https://github.com/devrashed01/agentboy-releases/releases/latest"><span class="download-label">Download for Mac</span></a>
+        <a class="btn btn-primary download-mac" href="https://github.com/devrashed01/agentboy-releases/releases/latest">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.37 12.3c-.02-2.2 1.8-3.26 1.88-3.31-1.03-1.5-2.62-1.7-3.19-1.73-1.36-.14-2.65.8-3.34.8-.69 0-1.75-.78-2.88-.76-1.48.02-2.85.86-3.61 2.19-1.54 2.67-.39 6.62 1.1 8.79.73 1.06 1.6 2.25 2.74 2.2 1.1-.04 1.51-.71 2.84-.71 1.32 0 1.7.71 2.86.69 1.18-.02 1.93-1.08 2.65-2.14.84-1.23 1.18-2.42 1.2-2.48-.03-.01-2.3-.88-2.32-3.5zM14.19 5.84c.6-.73 1.01-1.75.9-2.76-.87.04-1.92.58-2.54 1.31-.56.65-1.05 1.69-.92 2.69.97.07 1.96-.49 2.56-1.24z"/></svg>
+          <span>Download for Mac</span>
+        </a>
+        <a class="btn btn-ghost download-win" href="https://github.com/devrashed01/agentboy-releases/releases/latest/download/AgentBoy-win-Setup.exe">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 5.5l7.5-1v7H3zM11.5 4.4L21 3v8.5h-9.5zM3 12.5h7.5v7L3 18.5zM11.5 12.5H21V21l-9.5-1.4z"/></svg>
+          <span>Download for Windows</span>
+        </a>
     </div>
-    <p class="fine"><span class="version">Latest version</span> · free · macOS 14+</p>
+    <p class="fine"><span class="version">Latest version</span> · free · macOS 14+ · Windows 10/11</p>
   </div>
 </section>
 
@@ -626,15 +658,47 @@
 (() => {
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  // The newest release: name the version and link straight to the .dmg.
-  fetch("https://api.github.com/repos/devrashed01/agentboy-releases/releases/latest")
+  // The visitor's system: its download comes first, and its install steps show.
+  const ua = navigator.userAgentData?.platform || navigator.platform || navigator.userAgent;
+  const os = /win/i.test(ua) ? "win" : "mac";
+  const showOS = which => {
+    document.querySelectorAll("[data-os]").forEach(t => t.setAttribute("aria-selected", String(t.dataset.os === which)));
+    document.querySelectorAll("[data-os-panel]").forEach(p => p.hidden = p.dataset.osPanel !== which);
+  };
+  document.querySelectorAll("[data-os]").forEach(t => t.addEventListener("click", () => showOS(t.dataset.os)));
+  if (os === "win") {
+    showOS("win");
+    document.querySelectorAll(".hero .ctas, .final .ctas").forEach(c => {
+      const mac = c.querySelector(".download-mac"), win = c.querySelector(".download-win");
+      mac.classList.replace("btn-primary", "btn-ghost");
+      win.classList.replace("btn-ghost", "btn-primary");
+      c.insertBefore(win, mac);
+    });
+  }
+
+  // The newest releases: name the version and link straight to each
+  // installer, from the newest release that has one (a release can ship
+  // for one system before the other).
+  fetch("https://api.github.com/repos/devrashed01/agentboy-releases/releases?per_page=10")
     .then(r => r.ok ? r.json() : null)
-    .then(rel => {
-      if (!rel) return;
-      const dmg = (rel.assets || []).find(a => a.name.endsWith(".dmg"));
-      const version = (rel.tag_name || "").replace(/^v/, "");
-      document.querySelectorAll(".version").forEach(el => el.textContent = "Version " + version);
-      if (dmg) document.querySelectorAll(".download-link").forEach(a => a.href = dmg.browser_download_url);
+    .then(list => {
+      if (!Array.isArray(list)) return;
+      const stable = list.filter(r => !r.draft && !r.prerelease);
+      const newest = (test) => {
+        for (const rel of stable) {
+          const asset = (rel.assets || []).find(a => test(a.name));
+          if (asset) return { rel, asset };
+        }
+      };
+      const mac = newest(n => n.endsWith(".dmg"));
+      const win = newest(n => n === "AgentBoy-win-Setup.exe");
+      if (mac) document.querySelectorAll(".download-mac").forEach(a => a.href = mac.asset.browser_download_url);
+      if (win) document.querySelectorAll(".download-win").forEach(a => a.href = win.asset.browser_download_url);
+      const latest = (os === "win" ? win : mac) || mac || win;
+      if (latest) {
+        const version = (latest.rel.tag_name || "").replace(/^v/, "");
+        document.querySelectorAll(".version").forEach(el => el.textContent = "Version " + version);
+      }
     })
     .catch(() => {});
 
